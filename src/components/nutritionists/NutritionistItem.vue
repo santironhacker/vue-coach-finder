@@ -24,10 +24,10 @@ export default {
       return `${this.firstName} ${this.lastName}`;
     },
     nutritionistContactLink() {
-      return '' // `${this.$router.path}/${this.id}/contact`; // nutritionists/n1/contact
+      return `${this.$route.path}/${this.id}/contact`; // nutritionists/n1/contact
     },
     nutritionistDetailsLink() {
-      return '' // `${this.$router.path}/${this.id}`; // nutritionists/n1
+      return `${this.$route.path}/${this.id}`; // nutritionists/n1
     }
   }
 }
