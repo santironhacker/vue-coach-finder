@@ -1,5 +1,5 @@
 <template>
-  <p>Nutritionists Registration</p>
+  <p>REGISTER as a nutritionist</p>
 </template>
 
 <script>
