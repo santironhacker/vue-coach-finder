@@ -1,13 +1,11 @@
 <template>
   <section>
-      <nutritionist-filter @change-filter="setFilters">
-
-      </nutritionist-filter>
+      <nutritionist-filter @change-filter="setFilters"></nutritionist-filter>
   </section>
   <section>
       <div class="controls">
         <base-button mode="outline">Refresh</base-button>
-        <base-button link to="/register">Register as a nutritionist</base-button>
+        <base-button v-if="!isNutritionist" link to="/register">Register as a nutritionist</base-button>
       </div>
       LIST OF NUTRITIONISTS
       <ul v-if="filteredNutritionists.length > 0">
@@ -67,6 +65,9 @@ export default {
     },
     hasNutritionists() {
       return this.$store.getters['nutritionists/hasNutritionists'];
+    },
+    isNutritionist() {
+      return this.$store.getters['nutritionists/isNutritionist'];
     }
   }
 }
