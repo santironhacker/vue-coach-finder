@@ -9,16 +9,30 @@
       </div>
       LIST OF NUTRITIONISTS
       <ul v-if="hasNutritionists">
-        <li v-for="nutritionist in filteredNutritionists" :key="nutritionist.id">
+        <nutritionist-item
+          v-for="nutritionist in filteredNutritionists" 
+          :key="nutritionist.id"
+          :id="nutritionist.id"
+          :first-name="nutritionist.firstName"
+          :last-name="nutritionist.lastName"
+          :rate="nutritionist.hourlyRate"
+          :areas="nutritionist.areas"
+        ></nutritionist-item>
+        <!-- <li v-for="nutritionist in filteredNutritionists" :key="nutritionist.id">
           {{ nutritionist.firstName }}
-        </li>
+        </li> -->
       </ul>
       <h3 v-else>No coaches found.</h3>
   </section>
 </template>
 
 <script>
+import NutritionistItem from '../../components/nutritionists/NutritionistItem';
+
 export default {
+  components: {
+    NutritionistItem
+  },
   computed: {
     filteredNutritionists() {
       // First element refers to the namespaced module and the second to the getter
@@ -31,6 +45,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
 </style>
