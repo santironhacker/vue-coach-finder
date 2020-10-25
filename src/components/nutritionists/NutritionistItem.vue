@@ -3,15 +3,15 @@
     <h3>{{ fullName }}</h3>
     <h4>${{ rate }}/hour</h4>
     <div>
-<span v-for="area in areas" :key="area">{{ area }}</span>
+      <base-badge v-for="area in areas" :key="area" :title="area" :type="area"></base-badge>
     </div>
     <div class="actions">
-      <router-link :to="nutritionistContactLink">
+      <base-button mode="outline" link :to="nutritionistContactLink">
         Contact
-      </router-link>
-      <router-link :to="nutritionistDetailsLink">
+      </base-button>
+      <base-button link :to="nutritionistDetailsLink">
         View Details
-      </router-link>
+      </base-button>
     </div>
   </li>
 </template>
@@ -24,10 +24,10 @@ export default {
       return `${this.firstName} ${this.lastName}`;
     },
     nutritionistContactLink() {
-      return `${this.$router.path}/${this.id}/contact`; // nutritionists/n1/contact
+      return '' // `${this.$router.path}/${this.id}/contact`; // nutritionists/n1/contact
     },
     nutritionistDetailsLink() {
-      return `${this.$router.path}/${this.id}`; // nutritionists/n1
+      return '' // `${this.$router.path}/${this.id}`; // nutritionists/n1
     }
   }
 }

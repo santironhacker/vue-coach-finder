@@ -4,8 +4,8 @@
   </section>
   <section>
       <div class="controls">
-        <button>Refresh</button>
-        <router-link to="/register">Register as a nutritionist</router-link>
+        <base-button mode="outline">Refresh</base-button>
+        <base-button link to="/register">Register as a nutritionist</base-button>
       </div>
       LIST OF NUTRITIONISTS
       <ul v-if="hasNutritionists">
@@ -18,9 +18,6 @@
           :rate="nutritionist.hourlyRate"
           :areas="nutritionist.areas"
         ></nutritionist-item>
-        <!-- <li v-for="nutritionist in filteredNutritionists" :key="nutritionist.id">
-          {{ nutritionist.firstName }}
-        </li> -->
       </ul>
       <h3 v-else>No coaches found.</h3>
   </section>

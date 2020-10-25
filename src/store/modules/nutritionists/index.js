@@ -11,7 +11,7 @@ export default {
                   id: 'n1',
                   firstName: 'Julie',
                   lastName: 'Holt',
-                  areas: ['wealthness', 'nutrition plan', 'diet'],
+                  areas: ['wealthness', 'nutrition-plan', 'diet'],
                   description:
                     "I am Julie and I've worked as a freelance nutritionist for years. Let me help you solve all food related doubts!",
                   hourlyRate: 30
