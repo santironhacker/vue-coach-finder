@@ -20,7 +20,7 @@ export default {
                   id: 'n2',
                   firstName: 'Tom',
                   lastName: 'Hockard',
-                  areas: ['wealthness', 'diet'],
+                  areas: ['wealthness', 'nutrition-plan'],
                   description:
                     'I am Tom and as a personal trainer I can help you bring wealthness back to your lifestyle.',
                   hourlyRate: 30

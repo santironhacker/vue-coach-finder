@@ -1,6 +1,8 @@
 <template>
   <section>
-      FILTER
+      <nutritionist-filter @change-filter="setFilters">
+
+      </nutritionist-filter>
   </section>
   <section>
       <div class="controls">
@@ -8,7 +10,7 @@
         <base-button link to="/register">Register as a nutritionist</base-button>
       </div>
       LIST OF NUTRITIONISTS
-      <ul v-if="hasNutritionists">
+      <ul v-if="filteredNutritionists.length > 0">
         <nutritionist-item
           v-for="nutritionist in filteredNutritionists" 
           :key="nutritionist.id"
@@ -25,15 +27,43 @@
 
 <script>
 import NutritionistItem from '../../components/nutritionists/NutritionistItem';
+import NutritionistFilter from '../../components/nutritionists/NutritionistFilter';
 
 export default {
   components: {
-    NutritionistItem
+    NutritionistItem,
+    NutritionistFilter
+  },
+  data() {
+    return {
+      activeFilters: {
+        wealthness: true,
+        'nutrition-plan': true,
+        diet: true
+      }
+    }
+  },
+  methods: {
+    setFilters(updatedFilters) {
+      this.activeFilters = updatedFilters;
+    }
   },
   computed: {
     filteredNutritionists() {
       // First element refers to the namespaced module and the second to the getter
-      return this.$store.getters['nutritionists/nutritionists'];
+      const nutritionists = this.$store.getters['nutritionists/nutritionists'];
+      return nutritionists.filter(nutritionist => {
+        if(this.activeFilters.wealthness && nutritionist.areas.includes('wealthness')) {
+          return true;
+        }
+        if(this.activeFilters['nutrition-plan'] && nutritionist.areas.includes('nutrition-plan')) {
+          return true;
+        }
+        if(this.activeFilters.diet && nutritionist.areas.includes('diet')) {
+          return true;
+        }
+        return false;
+      })
     },
     hasNutritionists() {
       return this.$store.getters['nutritionists/hasNutritionists'];
