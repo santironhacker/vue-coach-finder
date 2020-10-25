@@ -1,10 +1,20 @@
 <template>
-  <p>REGISTER as a nutritionist</p>
+  <section>
+    <base-card>
+      <h2>Register as a nutritionist now!</h2>
+      <nutritionist-form></nutritionist-form>
+    </base-card>
+  </section>
+
 </template>
 
 <script>
-export default {
+import NutritionistForm from '../../components/nutritionists/NutritionistForm';
 
+export default {
+  components: {
+    NutritionistForm
+  }
 }
 </script>
 
