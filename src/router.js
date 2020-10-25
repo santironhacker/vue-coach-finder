@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import NutritionistsDetail from './pages/nutritionists/NutritionistsDetail.vue';
+import NutritionistDetail from './pages/nutritionists/NutritionistDetail.vue';
 import NutritionistsList from './pages/nutritionists/NutritionistsList.vue';
 import NutritionistRegistration from './pages/nutritionists/NutritionistRegistration.vue';
 import NutritionistsCoach from './pages/requests/ContactNutritionist.vue';
@@ -17,7 +17,7 @@ const router = createRouter({
             path: '/nutritionists', component: NutritionistsList
         },
         {
-            path: '/nutritionists/:id', component: NutritionistsDetail, children: [
+            path: '/nutritionists/:id', component: NutritionistDetail, children: [
                 {
                     path: 'contact', component: NutritionistsCoach
                 }
