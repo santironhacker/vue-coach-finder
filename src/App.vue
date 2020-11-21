@@ -1,6 +1,8 @@
 <template>
   <TheHeader/>
-  <router-view />
+  <main>
+    <router-view />
+  </main>
 </template>
 
 <script>
@@ -26,5 +28,11 @@ html {
 
 body {
   margin: 0;
+}
+
+main {
+  width: 90%;
+  margin-left: 5%;
+
 }
 </style>
