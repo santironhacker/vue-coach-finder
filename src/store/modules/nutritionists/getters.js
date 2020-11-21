@@ -5,7 +5,8 @@ export default {
     hasNutritionists(state) {
         return state.nutritionists && state.nutritionists.length > 0;
     },
-    // _ is state and _2 the rootState
+    // _ is state and _2 the rootState.rootState
+    // The _ notation means we are deliberately not using those arguments
     isNutritionist(_, getters, _2, rootGetters) {
         const nutritionists = getters.nutritionists;
         const userId = rootGetters.userId;
