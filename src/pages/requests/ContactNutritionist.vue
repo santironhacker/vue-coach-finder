@@ -32,6 +32,12 @@ export default {
         this.isFormValid = false;
         return;
       }
+      this.$store.dispatch('requests/contactNutritionist', {
+        email: this.email,
+        message: this.message,
+        nutritionistId: this.$route.params.id
+      });
+      this.$router.replace('/nutritionists');
     }
   }
 }
