@@ -5,9 +5,12 @@
   <section>
       <div class="controls">
         <base-button mode="outline" @click="loadNutritionists">Refresh</base-button>
-        <base-button v-if="!isNutritionist" link to="/register">Register as a nutritionist</base-button>
+        <base-button v-if="!isNutritionist && !isLoading" link to="/register">Register as a nutritionist</base-button>
       </div>
-      <ul v-if="filteredNutritionists.length > 0">
+      <div v-if="isLoading">
+        <base-spinner></base-spinner>
+      </div>
+      <ul v-else-if="hasNutritionists">
         <nutritionist-item
           v-for="nutritionist in filteredNutritionists" 
           :key="nutritionist.id"
@@ -33,6 +36,7 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
       activeFilters: {
         wealthness: true,
         'nutrition-plan': true,
@@ -47,8 +51,10 @@ export default {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
-    loadNutritionists() {
-      this.$store.dispatch('nutritionists/loadNutritionists');
+    async loadNutritionists() {
+      this.isLoading = true;
+      await this.$store.dispatch('nutritionists/loadNutritionists');
+      this.isLoading = false;
     }
   },
   computed: {
@@ -69,7 +75,7 @@ export default {
       })
     },
     hasNutritionists() {
-      return this.$store.getters['nutritionists/hasNutritionists'];
+      return !this.isLoading && this.$store.getters['nutritionists/hasNutritionists'];
     },
     isNutritionist() {
       return this.$store.getters['nutritionists/isNutritionist'];
