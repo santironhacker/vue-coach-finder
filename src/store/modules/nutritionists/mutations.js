@@ -8,5 +8,8 @@ export default {
     // assuming payload is a list of coaches
     setNutritionists(state, payload) {
         state.nutritionists = payload;
+    },
+    setFetchTimestamp(state) {
+        state.lastFetch = new Date().getTime();
     }
 };

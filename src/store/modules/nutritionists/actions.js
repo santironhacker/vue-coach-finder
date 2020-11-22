@@ -33,7 +33,12 @@ export default {
         });
     },
     // action can be triggered by any component where it is used
-    async loadNutritionists(context) {
+    async loadNutritionists(context, payload) {
+        // Check if we should continue with last loaded data
+        if(!payload.forceRefresh && !context.getters.shouldUpdateData) {
+            return;
+        }
+
         const response = await fetch(`https://vue-nutritionists-platform.firebaseio.com/nutritionists.json`);
         const responseData = await response.json();
         
@@ -56,5 +61,6 @@ export default {
             nutritionists.push(nutritionist);
         }
         context.commit('setNutritionists', nutritionists);
+        context.commit('setFetchTimestamp');
     }
 };

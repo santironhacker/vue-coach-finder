@@ -10,7 +10,7 @@
   </section>
   <section>
       <div class="controls">
-        <base-button mode="outline" @click="loadNutritionists">Refresh</base-button>
+        <base-button mode="outline" @click="loadNutritionists(true)">Refresh</base-button>
         <base-button v-if="!isNutritionist && !isLoading" link to="/register">Register as a nutritionist</base-button>
       </div>
       <div v-if="isLoading">
@@ -58,10 +58,10 @@ export default {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
-    async loadNutritionists() {
+    async loadNutritionists(refresh = false) {
       this.isLoading = true;
       try {
-        await this.$store.dispatch('nutritionists/loadNutritionists');
+        await this.$store.dispatch('nutritionists/loadNutritionists', { forceRefresh: refresh });
       } catch (error) {
         this.error = error.message || 'Something went wrong!';
       }
