@@ -39,7 +39,7 @@ export default {
         
         // error can be handled by the component that dispatched the action
         if (!response.ok) {
-            const error = new Error(responseData.message || 'Failed to fetch!');
+            const error = new Error(responseData.message || 'Failed to fetch nutritionists!');
             throw error;
         }
         
