@@ -11,11 +11,11 @@ export default {
             hourlyRate: data.rate,
             areas: data.areas
         };
-        const response = await fetch(`https://vue-nutritionists-platform.firebaseio.com/vue-nutritionists-platform/${userId}.json`, {
+        const response = await fetch(`https://vue-nutritionists-platform.firebaseio.com/nutritionists/${userId}.json`, {
             // We only one to have one coach per userId
             method: 'PUT',
             // Stringify the data before sending it to firebase
-            body: JSON.stringify({nutritionistData})
+            body: JSON.stringify(nutritionistData)
         });
 
         // The "response" object also has an object that return a promise,
@@ -31,5 +31,28 @@ export default {
             ...nutritionistData,
             id: userId
         });
+    },
+    // action can be triggered by any component where it is used
+    async loadNutritionists(context) {
+        const response = await fetch(`https://vue-nutritionists-platform.firebaseio.com/nutritionists.json`);
+        const responseData = await response.json();
+        
+        if (!response.ok) {
+            // error
+        }
+        
+        const nutritionists = [];
+        for (const key in responseData) {
+            const nutritionist = {
+                id: key,
+                firstName: responseData[key].firstName,
+                lastName: responseData[key].lastName,
+                description: responseData[key].description,
+                hourlyRate: responseData[key].hourlyRate,
+                areas: responseData[key].areas
+            }
+            nutritionists.push(nutritionist);
+        }
+        context.commit('setNutritionists', nutritionists);
     }
 };

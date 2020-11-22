@@ -4,10 +4,9 @@
   </section>
   <section>
       <div class="controls">
-        <base-button mode="outline">Refresh</base-button>
+        <base-button mode="outline" @click="loadNutritionists">Refresh</base-button>
         <base-button v-if="!isNutritionist" link to="/register">Register as a nutritionist</base-button>
       </div>
-      LIST OF NUTRITIONISTS
       <ul v-if="filteredNutritionists.length > 0">
         <nutritionist-item
           v-for="nutritionist in filteredNutritionists" 
@@ -19,7 +18,7 @@
           :areas="nutritionist.areas"
         ></nutritionist-item>
       </ul>
-      <h3 v-else>No coaches found.</h3>
+      <h3 v-else>No nutritionists found.</h3>
   </section>
 </template>
 
@@ -41,9 +40,15 @@ export default {
       }
     }
   },
+  created() {
+    this.loadNutritionists();
+  },
   methods: {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
+    },
+    loadNutritionists() {
+      this.$store.dispatch('nutritionists/loadNutritionists');
     }
   },
   computed: {
