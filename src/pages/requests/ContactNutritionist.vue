@@ -1,19 +1,21 @@
 <template>
-  <p>Contact Nutritionist</p>
-  <form @submit.prevent="submitForm">
-    <div class="form-control">
-      <label for="email">Your E-Mail Address</label>
-      <input type="email" id="email" v-model.trim="email">
-    </div>
-    <div class="form-control">
-      <label for="message">Message</label>
-      <textarea id="message" rows="5" v-model.trim="message"></textarea>
-    </div>
-    <p class="errors" v-if="!isFormValid">Please enter a valid email and message.</p>
-    <div class="actions">
-      <base-button>Send message</base-button>
-    </div>
-  </form>
+  <div>
+    <p>Contact Nutritionist</p>
+    <form @submit.prevent="submitForm">
+      <div class="form-control">
+        <label for="email">Your E-Mail Address</label>
+        <input type="email" id="email" v-model.trim="email">
+      </div>
+      <div class="form-control">
+        <label for="message">Message</label>
+        <textarea id="message" rows="5" v-model.trim="message"></textarea>
+      </div>
+      <p class="errors" v-if="!isFormValid">Please enter a valid email and message.</p>
+      <div class="actions">
+        <base-button>Send message</base-button>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>

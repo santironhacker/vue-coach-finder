@@ -5,7 +5,6 @@
       <nutritionist-form @save-data="saveData"></nutritionist-form>
     </base-card>
   </section>
-
 </template>
 
 <script>

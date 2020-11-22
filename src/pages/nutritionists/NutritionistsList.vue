@@ -1,34 +1,36 @@
 <template>
-  <!-- The double exclamation mark makes the string convert to a boolean -->
-  <base-dialog :show="!!error" title="An error occured!" @close="handleError">
-    <p>
-      {{ error }}
-    </p>
-  </base-dialog>
-  <section>
-      <nutritionist-filter @change-filter="setFilters"></nutritionist-filter>
-  </section>
-  <section>
-      <div class="controls">
-        <base-button mode="outline" @click="loadNutritionists(true)">Refresh</base-button>
-        <base-button v-if="!isNutritionist && !isLoading" link to="/register">Register as a nutritionist</base-button>
-      </div>
-      <div v-if="isLoading">
-        <base-spinner></base-spinner>
-      </div>
-      <ul v-else-if="hasNutritionists">
-        <nutritionist-item
-          v-for="nutritionist in filteredNutritionists" 
-          :key="nutritionist.id"
-          :id="nutritionist.id"
-          :first-name="nutritionist.firstName"
-          :last-name="nutritionist.lastName"
-          :rate="nutritionist.hourlyRate"
-          :areas="nutritionist.areas"
-        ></nutritionist-item>
-      </ul>
-      <h3 v-else>No nutritionists found.</h3>
-  </section>
+  <div>
+    <!-- The double exclamation mark makes the string convert to a boolean -->
+    <base-dialog :show="!!error" title="An error occured!" @close="handleError">
+      <p>
+        {{ error }}
+      </p>
+    </base-dialog>
+    <section>
+        <nutritionist-filter @change-filter="setFilters"></nutritionist-filter>
+    </section>
+    <section>
+        <div class="controls">
+          <base-button mode="outline" @click="loadNutritionists(true)">Refresh</base-button>
+          <base-button v-if="!isNutritionist && !isLoading" link to="/register">Register as a nutritionist</base-button>
+        </div>
+        <div v-if="isLoading">
+          <base-spinner></base-spinner>
+        </div>
+        <ul v-else-if="hasNutritionists">
+          <nutritionist-item
+            v-for="nutritionist in filteredNutritionists" 
+            :key="nutritionist.id"
+            :id="nutritionist.id"
+            :first-name="nutritionist.firstName"
+            :last-name="nutritionist.lastName"
+            :rate="nutritionist.hourlyRate"
+            :areas="nutritionist.areas"
+          ></nutritionist-item>
+        </ul>
+        <h3 v-else>No nutritionists found.</h3>
+    </section>
+  </div>
 </template>
 
 <script>
