@@ -37,8 +37,10 @@ export default {
         const response = await fetch(`https://vue-nutritionists-platform.firebaseio.com/nutritionists.json`);
         const responseData = await response.json();
         
+        // error can be handled by the component that dispatched the action
         if (!response.ok) {
-            // error
+            const error = new Error(responseData.message || 'Failed to fetch!');
+            throw error;
         }
         
         const nutritionists = [];

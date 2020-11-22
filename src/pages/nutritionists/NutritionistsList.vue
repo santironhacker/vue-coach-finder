@@ -1,4 +1,10 @@
 <template>
+  <!-- The double exclamation mark makes the string convert to a boolean -->
+  <base-dialog :show="!!error" title="An error occured!" @close="handleError">
+    <p>
+      {{ error }}
+    </p>
+  </base-dialog>
   <section>
       <nutritionist-filter @change-filter="setFilters"></nutritionist-filter>
   </section>
@@ -37,6 +43,7 @@ export default {
   data() {
     return {
       isLoading: false,
+      error: '',
       activeFilters: {
         wealthness: true,
         'nutrition-plan': true,
@@ -53,8 +60,15 @@ export default {
     },
     async loadNutritionists() {
       this.isLoading = true;
-      await this.$store.dispatch('nutritionists/loadNutritionists');
+      try {
+        await this.$store.dispatch('nutritionists/loadNutritionists');
+      } catch (error) {
+        this.error = error.message || 'Something went wrong!';
+      }
       this.isLoading = false;
+    },
+    handleError() {
+      this.error = null;
     }
   },
   computed: {
